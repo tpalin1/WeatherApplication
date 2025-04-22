@@ -116,10 +116,7 @@ const App = () => {
           transition: 0.3s;
         }
 
-        .main-card:hover {
-          transform: scale(1.05);
-        }
-
+   
         .main-card h1 {
           font-size: 2.5rem;
           color: #023e8a;
@@ -149,10 +146,7 @@ const App = () => {
           scroll-behavior: smooth;
         }
 
-        .carousel::-webkit-scrollbar {
-          display: none;
-        }
-
+        
         .carousel-card {
           min-width: 180px;
           background: #fff;
@@ -165,10 +159,7 @@ const App = () => {
           transform: scale(1);
         }
 
-        .carousel-card:hover {
-          transform: scale(1.1);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        }
+     
 
         .carousel-card .icon {
           font-size: 3rem;
