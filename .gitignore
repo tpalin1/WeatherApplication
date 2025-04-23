@@ -1,0 +1,34 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+weather-frontend/node_modules
+weather-frontend/.pnp
+weather-frontend/.pnp.js
+
+# testing
+weather-frontend/coverage
+
+# production
+weather-frontend/build
+
+# misc
+weather-frontend/.DS_Store
+weather-frontend/.env.local
+weather-frontend/.env.development.local
+weather-frontend/.env.test.local
+weather-frontend/.env.production.local
+
+weather-frontend/npm-debug.log*
+weather-frontend/yarn-debug.log*
+weather-frontend/yarn-error.log*
+
+
+WeatherApi/RestAPIWeather/appsettings.Development.json
+WeatherApi/RestAPIWeather/secrets.json
+
+# User secrets if you use dotnet secret manager (these are outside repo path usually)
+*.user
+
+# IDE configs
+WeatherApi/RestAPIWeather/.vs/
+WeatherApi/RestAPIWeather/.vscode/
