@@ -34,6 +34,19 @@ body {
   margin-right: 1rem;
 }
 
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.search-section .search-input {
+  width: 100%;
+  max-width: 400px;
+}
+
+
 .search-input::placeholder {
   color: #cce3f2;
 }
