@@ -1,15 +1,25 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using RestAPIWeather.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
 
-// Add services to the container.
+// Register HttpClient to DI container
+builder.Services.AddHttpClient();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Register your WeatherService (it depends on HttpClient)
+builder.Services.AddScoped<WeatherService>();
+
+builder.Services.AddControllers();  // Add controllers (REST API)
+
+builder.Services.AddEndpointsApiExplorer();  // For Swagger
+builder.Services.AddSwaggerGen();  // For Swagger
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +27,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
+Console.WriteLine("API Key from config: " + builder.Configuration["WeatherApi:Key"]);
 
-app.Run();
+app.Run();  // Start the web application

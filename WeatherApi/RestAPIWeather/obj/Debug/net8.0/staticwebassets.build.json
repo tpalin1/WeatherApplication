@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "AvEil/ibFDP/lgy0ZLPUfPhWYYM6x/wnkA0+PqhRMB4=",
+  "Source": "RestAPIWeather",
+  "BasePath": "_content/RestAPIWeather",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
