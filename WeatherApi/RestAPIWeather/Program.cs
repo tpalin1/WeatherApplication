@@ -16,6 +16,16 @@ builder.Services.AddControllers();  // Add controllers (REST API)
 
 builder.Services.AddEndpointsApiExplorer();  // For Swagger
 builder.Services.AddSwaggerGen();  // For Swagger
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000") // React dev server
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 
@@ -23,11 +33,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+    app.UseCors("AllowReactApp");
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 app.MapControllers();
-Console.WriteLine("API Key from config: " + builder.Configuration["WeatherApi:Key"]);
 
 app.Run();  // Start the web application

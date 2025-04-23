@@ -19,7 +19,6 @@ namespace RestAPIWeather.Services
         public string GetApiKey()
         {
             var key = _config["WeatherApi:Key"];
-            Console.WriteLine("Loaded API key: " + key); // test output
             return key;
         }
 
@@ -27,7 +26,6 @@ namespace RestAPIWeather.Services
         public async Task<WeatherResponse> GetWeatherAsync(string city)
         {
 
-            Console.WriteLine("API Key: " + GetApiKey());
             // Construct the URL to call the OpenWeather API
             string url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={GetApiKey()}&units=metric";
 

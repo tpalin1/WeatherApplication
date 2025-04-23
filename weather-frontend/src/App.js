@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getWeather } from './WeatherService.js';
 import './App.css';
 
 const initialCities = [
@@ -15,6 +16,14 @@ const App = () => {
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
+  const fetchWeather = async () => {
+    try {
+      const data = await getWeather('london');
+     console.log(data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   const toggleFavorite = (city) => {
     const isAlreadyFav = favorites.some((fav) => fav.name === city.name);
     if (isAlreadyFav) {
@@ -27,7 +36,9 @@ const App = () => {
   const isFavorite = (cityName) => favorites.some((c) => c.name === cityName);
 
   return (
+    
     <div className="app">
+       <button onClick={fetchWeather}>Get Weather</button>
       {/* Top Bar */}
       <header className="top-bar">
         <input
