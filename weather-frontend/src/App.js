@@ -13,12 +13,23 @@ const initialCities = [
 const App = () => {
   const [selectedCity, setSelectedCity] = useState(initialCities[0]);
   const [searchTerm, setSearchTerm] = useState('');
+
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState([]);
 
   const fetchWeather = async () => {
     try {
-      const data = await getWeather('london');
+      const data = await getWeather(searchTerm);
+
+      if (!data) {
+        throw new Error('City not found!');
+      }
+      setSelectedCity({
+        name: data.name,
+        temp: data.main.temp,
+        icon: data.weather[0].icon,
+        condition: data.weather[0].description,
+      });
      console.log(data);
     } catch (error) {
       console.error(error.message);
@@ -46,6 +57,13 @@ const App = () => {
           placeholder="Search city..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown = {(e) => {
+            if (e.key === 'Enter') {
+              fetchWeather(searchTerm);
+              setSearchTerm('');
+              
+            }}
+          }
         />
         <div className="buttons">
           <button className="btn favorite-btn" onClick={() => setShowFavorites(!showFavorites)}>
