@@ -26,7 +26,6 @@ weather-frontend/yarn-error.log*
 WeatherApi/RestAPIWeather/appsettings.Development.json
 WeatherApi/RestAPIWeather/secrets.json
 
-# User secrets if you use dotnet secret manager (these are outside repo path usually)
 *.user
 
 # IDE configs
