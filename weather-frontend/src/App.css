@@ -76,6 +76,9 @@ body {
   gap: 1rem;
 }
 
+
+
+
 .btn {
   padding: 0.7rem 1.5rem;
   border: none;
@@ -276,4 +279,83 @@ input:checked + .slider {
 
 input:checked + .slider::before {
   transform: translateX(26px);
+}
+.weather-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f4f8;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.city-name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.weather-info {
+  margin-bottom: 20px;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.condition {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.hourly-carousel {
+  display: flex;
+  overflow-x: scroll;
+  padding: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hourly-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 10px;
+  text-align: center;
+  flex-shrink: 0;
+  width: 150px;
+  transition: transform 0.2s ease;
+}
+
+.hourly-card:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hour {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.temperature {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.condition {
+  font-size: 1rem;
+  color: #666;
 }

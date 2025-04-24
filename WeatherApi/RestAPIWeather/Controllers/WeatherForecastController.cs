@@ -33,6 +33,9 @@ namespace RestAPIWeather.Controllers
             })
             .ToArray();
         }
+
+    
+
         [HttpGet]
         [Route("weather")]
         public async Task<IActionResult> GetWeather(string city)
@@ -50,5 +53,7 @@ namespace RestAPIWeather.Controllers
 
             return Ok(weatherData);
         }
+
+
     }
 }
