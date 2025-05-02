@@ -9,17 +9,7 @@ export const WeatherDetailPage = () => {
   const [forecast, setForecast] = useState([]);
 
 
-  // Temporary hourly data
-  const hourlyData = [
-    { hour: "6 AM", temp: 15, condition: "Cloudy", icon: "🌥️" },
-    { hour: "9 AM", temp: 18, condition: "Sunny", icon: "☀️" },
-    { hour: "12 PM", temp: 20, condition: "Sunny", icon: "☀️" },
-    { hour: "3 PM", temp: 22, condition: "Partly Cloudy", icon: "⛅" },
-    { hour: "6 PM", temp: 18, condition: "Clear", icon: "🌤️" },
-    { hour: "9 PM", temp: 16, condition: "Clear", icon: "🌙" },
-    { hour: "12 AM", temp: 14, condition: "Clear", icon: "🌙" },
-    { hour: "3 AM", temp: 13, condition: "Cloudy", icon: "🌥️" },
-  ];
+
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -53,7 +43,7 @@ export const WeatherDetailPage = () => {
           });
         
           
-          console.log(formattedForecast); // now has readable time strings
+            setForecast(formattedForecast);
     };
 
     fetchForecast();
@@ -78,13 +68,13 @@ export const WeatherDetailPage = () => {
 
       {/* Hourly Forecast Carousel */}
       <div className="hourly-carousel">
-        {hourlyData.map((hourData, index) => (
-          <div key={index} className="hourly-card">
-            <div className="hour">{hourData.hour}</div>
-            <div className="icon">{hourData.icon}</div>
-            <div className="temperature">{hourData.temp}°C</div>
-            <div className="condition">{hourData.condition}</div>
-          </div>
+        {forecast.map((hourData, index) => (
+            <div key={index} className="hourly-card">
+                <div className="hour">{hourData.time}</div>
+                <div className="icon">{hourData.icon}</div>
+                <div className="temp">{Math.round(hourData.temp)}°C</div>
+                <div className="condition">{hourData.condition}</div>
+            </div>
         ))}
       </div>
     </div>

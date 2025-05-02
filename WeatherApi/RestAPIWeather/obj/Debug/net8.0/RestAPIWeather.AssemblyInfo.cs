@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RestAPIWeather")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fde3f65c95f1cc91e81d40ad7a63ae4c4861770")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+08d76712f102a42a0353db2a65fa86fd9f816f5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("RestAPIWeather")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RestAPIWeather")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -49,16 +49,6 @@ namespace RestAPIWeather.Services
                 // Convert Unix timestamp to DateTime
                 DateTime forecastTime = DateTimeOffset.FromUnixTimeSeconds(forecast.Dt).DateTime;
                 float tempCelsius = forecast.Main.Temp - 273.15f; // Convert from Kelvin to Celsius
-
-                // Display forecast data for each 3-hour interval
-                Console.WriteLine($"Date/Time: {forecastTime:yyyy-MM-dd HH:mm:ss}");
-                Console.WriteLine($"Temperature: {tempCelsius:F1} °C");
-                Console.WriteLine($"Humidity: {forecast.Main.Humidity}%");
-                Console.WriteLine($"Weather: {forecast.Weather[0].Description}");
-                Console.WriteLine($"Wind Speed: {forecast.Wind.Speed} m/s");
-                Console.WriteLine($"Cloud Coverage: {forecast.Clouds.All}%");
-                Console.WriteLine($"Precipitation Probability: {forecast.Pop * 100}%");
-                Console.WriteLine(new string('-', 30));
             }
         }
         public async Task<WeatherForecastResponse> GetWeatherForecastAsync(string cityName)
