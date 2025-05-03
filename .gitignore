@@ -22,6 +22,8 @@ weather-frontend/npm-debug.log*
 weather-frontend/yarn-debug.log*
 weather-frontend/yarn-error.log*
 
+weather-frontend/build/
+
 
 WeatherApi/RestAPIWeather/appsettings.Development.json
 WeatherApi/RestAPIWeather/secrets.json

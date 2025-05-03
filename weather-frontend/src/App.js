@@ -1,6 +1,9 @@
+// App.jsx
 import React, { useState } from 'react';
-import { getWeather } from './WeatherService.js';
-import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { getWeather } from './WeatherService';
+import { HomePage } from './HomePage';
+import { WeatherDetailPage } from './WeatherForecast';
 
 const initialCities = [
   { name: 'London', temp: 14, icon: '🌧️', condition: 'Rainy' },
@@ -11,96 +14,53 @@ const initialCities = [
 ];
 
 const App = () => {
-  const [selectedCity, setSelectedCity] = useState(initialCities[0]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [tempUnit, setTempUnit] = useState('C');
+
+  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const toggleFavorite = (city) => {
+    const isFav = favorites.some((fav) => fav.name === city.name);
+    setFavorites(isFav ? favorites.filter((f) => f.name !== city.name) : [...favorites, city]);
+  };
+
+  const isFavorite = (name) => favorites.some((f) => f.name === name);
 
   const fetchWeather = async () => {
     try {
-      const data = await getWeather('london');
-     console.log(data);
-    } catch (error) {
-      console.error(error.message);
+      const data = await getWeather(searchTerm);
+      if (!data) throw new Error('City not found!');
+      
+    } catch (err) {
+      console.error(err);
     }
   };
-  const toggleFavorite = (city) => {
-    const isAlreadyFav = favorites.some((fav) => fav.name === city.name);
-    if (isAlreadyFav) {
-      setFavorites(favorites.filter((fav) => fav.name !== city.name));
-    } else {
-      setFavorites([...favorites, city]);
-    }
-  };
-
-  const isFavorite = (cityName) => favorites.some((c) => c.name === cityName);
 
   return (
-    
-    <div className="app">
-       <button onClick={fetchWeather}>Get Weather</button>
-      {/* Top Bar */}
-      <header className="top-bar">
-        <input
-          className="search-input"
-          placeholder="Search city..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <div className="buttons">
-          <button className="btn favorite-btn" onClick={() => setShowFavorites(!showFavorites)}>
-            Favorites
-          </button>
-          <button className="btn login-btn">Login</button>
-        </div>
-      </header>
-
-      {/* Sidebar */}
-      <aside className={`sidebar ${showFavorites ? 'open' : ''}`}>
-        <button className="close-btn" onClick={() => setShowFavorites(false)}>&times;</button>
-        <h3>Favorites</h3>
-        {favorites.length === 0 ? (
-          <p>No favorites yet!</p>
-        ) : (
-          <ul>
-            {favorites.map((city, i) => (
-              <li key={i} onClick={() => setSelectedCity(city)}>
-                {city.name}
-              </li>
-            ))}
-          </ul>
-        )}
-      </aside>
-
-      {/* Main Content */}
-      <main className="main">
-        <div className="weather-card">
-          <h1>{selectedCity.name}</h1>
-          <div className="icon">{selectedCity.icon}</div>
-          <h2>{selectedCity.temp}°C</h2>
-          <p>{selectedCity.condition}</p>
-        </div>
-
-        <h3 className="section-title">Popular Cities</h3>
-        <div className="carousel">
-          {initialCities.map((city, index) => (
-            <div key={index} className="carousel-card">
-              <div className="top-row">
-                <span onClick={() => toggleFavorite(city)} className="star">
-                  {isFavorite(city.name) ? '⭐' : '☆'}
-                </span>
-              </div>
-              <div className="icon" onClick={() => setSelectedCity(city)}>
-                {city.icon}
-              </div>
-              <h4 onClick={() => setSelectedCity(city)}>{city.name}</h4>
-              <p>{city.temp}°C</p>
-              <small>{city.condition}</small>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <HomePage
+            searchTerm={searchTerm}
+            handleSearchChange={handleSearchChange}
+            fetchWeather={fetchWeather}
+            tempUnit={tempUnit}
+            setTempUnit={setTempUnit}
+            favorites={favorites}
+            showFavorites={showFavorites}
+            setShowFavorites={setShowFavorites}
+            toggleFavorite={toggleFavorite}
+            isFavorite={isFavorite}
+            initialCities={initialCities}
+          />
+        }
+      />
+      <Route path="/weather/:cityName" element={<WeatherDetailPage />} />
+    </Routes>
+    </BrowserRouter>
   );
 };
 

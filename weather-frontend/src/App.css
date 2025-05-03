@@ -34,9 +34,36 @@ body {
   margin-right: 1rem;
 }
 
+.search-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.search-section .search-input {
+  width: 100%;
+  max-width: 400px;
+}
+
+
 .search-input::placeholder {
   color: #cce3f2;
 }
+
+.main.centered {
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.main.centered .search-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 
 .search-input:focus {
   outline: none;
@@ -48,6 +75,9 @@ body {
   display: flex;
   gap: 1rem;
 }
+
+
+
 
 .btn {
   padding: 0.7rem 1.5rem;
@@ -200,4 +230,132 @@ body {
 
 .star:hover {
   transform: scale(1.2);
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 24px;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+.weather-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  overflow: hidden;
+  height: 100vh;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.city-name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.weather-info {
+  margin-bottom: 20px;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.condition {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.hourly-carousel {
+  display: flex;
+  overflow-x: scroll;
+  padding: 10px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.hourly-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 10px;
+  text-align: center;
+  flex-shrink: 0;
+  width: 150px;
+  transition: transform 0.2s ease;
+}
+
+.hourly-card:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hour {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.temperature {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.condition {
+  font-size: 1rem;
+  color: #666;
 }
